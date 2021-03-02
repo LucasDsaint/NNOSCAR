@@ -114,12 +114,11 @@
                     <tr>
                         <th></th>
                         <th>{% anchor 'number' _("Order number") %}</th>
-                        <th>{% anchor 'total_incl_tax' _("Total inc tax") %}</th>
+
                         <th>{% trans "Number of items" %}</th>
                         <th>{% trans "Status" %}</th>
                         <th>{% trans "Customer" %}</th>
                         <th>{% trans "Shipping address" %}</th>
-                        <th>{% trans "Billing address" %}</th>
                         <th>{% trans "Date of purchase" %}</th>
                         <th></th>
                     </tr>
@@ -129,7 +128,6 @@
                     <tr>
                         <td><input type="checkbox" name="selected_order" class="selected_order" value="{{ order.id }}"/></td>
                         <td><a href="{% url 'dashboard:order-detail' number=order.number %}">{{ order.number }}</a></td>
-                        <td>{{ order.total_incl_tax|currency:order.currency }}</td>
                         <td>{{ order.num_items }}</td>
                         <td>{{ order.status|default:"-" }}</td>
                         <td>
@@ -142,7 +140,6 @@
                             {% endif %}
                         </td>
                         <td>{{ order.shipping_address|default:"-" }}</td>
-                        <td>{{ order.billing_address|default:"-" }}</td>
                         <td>{{ order.date_placed }}</td>
                         <td>
                             <a class="btn btn-secondary" href="{% url 'dashboard:order-detail' number=order.number %}">{% trans "View" %}</a>
