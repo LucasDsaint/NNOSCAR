@@ -39,7 +39,7 @@ class CheckoutConfig(OscarConfig):
             path('shipping-method/', self.shipping_method_view.as_view(), name='shipping-method'),
 
             # Payment views
-            path('payment-method/', self.payment_method_view.as_view(), name='oxi'),
+            path('payment-method/', self.payment_method_view.as_view(), name='payment-method'),
             path('payment-details/', self.payment_details_view.as_view(), name='payment-details'),
 
             # Preview and thankyou
