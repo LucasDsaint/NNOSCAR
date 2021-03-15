@@ -6,21 +6,32 @@
 {% endblock %}
 
 {% block layout %}
-    {# Top-horizontal bar with account, notifictions, dashboard links #}
-    {% include "oscar/partials/nav_accounts.html" %}
 
     {# Site logo/title, mini-basket, browse dropdown and searchbox #}
-    <header class="header container">
-        <div class="page_inner">
-            <div class="row justify-content-between">
-                {% include "oscar/partials/brand.html" %}
-                {# Mini-basket wrapped in a block so some templates can now display it #}
-                {% block mini_basket %}{% include "oscar/partials/mini_basket.html" %}{% endblock %}
-            </div>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-accounts">
+            <a class="navbar-brand" href="#">FPS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top_nav_bar" aria-controls="top_nav_bar" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="top_nav_bar">
+                <ul class="navbar-nav mr-auto"></ul>
+                <ul class="navbar-nav">
+                {% include "oscar/partials/nav_accounts.html" %}
+
+                </ul>
+          </div>
+        </nav>
+
+
+
         {% block navigation %}
             {% include "oscar/partials/nav_primary.html" %}
         {% endblock %}
+    <header class="header container">
+    
+
+
     </header>
 
     {# Main content of page - other layout templates may override this block #}
