@@ -34,7 +34,8 @@ class ShippingAddressForm(PhoneNumberMixin, AbstractAddressForm):
         model = get_model('order', 'shippingaddress')
         fields = [
             'first_name', 'last_name',
-            'line1','line2', 'phone_number', 'notes', 
+            'line1', 'country',
+            'phone_number', 'notes',
         ]
 
 

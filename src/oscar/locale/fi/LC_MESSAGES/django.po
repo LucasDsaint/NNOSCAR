@@ -75,7 +75,7 @@ msgid "Last name"
 msgstr "Sukunimi"
 
 #: apps/address/abstract_models.py:224
-msgid "Local"
+msgid "First line of address"
 msgstr "Osoite"
 
 #: apps/address/abstract_models.py:226

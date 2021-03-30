@@ -72,7 +72,7 @@ msgid "Last name"
 msgstr "Último nome"
 
 #: apps/address/abstract_models.py:224
-msgid "Local"
+msgid "First line of address"
 msgstr "Primeira linha da morada"
 
 #: apps/address/abstract_models.py:226
@@ -168,7 +168,7 @@ msgstr "Países"
 
 #: apps/address/abstract_models.py:474 forms/mixins.py:27
 msgid "Phone number"
-msgstr "Número de aqui"
+msgstr "Número de telefone"
 
 #: apps/address/abstract_models.py:475
 msgid "In case we need to call you about your order"
@@ -5338,16 +5338,16 @@ msgstr "60+"
 
 #: forms/mixins.py:81
 msgid "This is not a valid international phone format."
-msgstr "O formato do número de aqui internacional não é válido."
+msgstr "O formato do número de telefone internacional não é válido."
 
 #: forms/mixins.py:94
 #, python-format
 msgid "This is not a valid local phone format for %s."
-msgstr "O formato local do número de aqui para %s não é válido."
+msgstr "O formato local do número de telefone para %s não é válido."
 
 #: forms/mixins.py:100
 msgid "This is not a valid local or international phone format."
-msgstr "Não é um formato de aqui válido local nem internacional."
+msgstr "Não é um formato de telefone válido local nem internacional."
 
 #: management/commands/oscar_send_alerts.py:16
 msgid "Check for products that are back in stock and send out alerts"
@@ -6129,7 +6129,7 @@ msgstr "Contacto"
 #: templates/oscar/checkout/thank_you.html:49
 #: templates/oscar/dashboard/orders/order_detail.html:532
 msgid "Phone"
-msgstr "aqui"
+msgstr "Telefone"
 
 #: templates/oscar/checkout/checkout.html:95
 msgid "Payment details to go here"

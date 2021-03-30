@@ -93,7 +93,7 @@ msgid "Last name"
 msgstr "姓"
 
 #: apps/address/abstract_models.py:224
-msgid "Local"
+msgid "First line of address"
 msgstr ""
 
 #: apps/address/abstract_models.py:226

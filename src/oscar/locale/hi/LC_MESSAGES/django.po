@@ -60,7 +60,7 @@ msgid "Last name"
 msgstr "अंतिम नाम"
 
 #: apps/address/abstract_models.py:224
-msgid "Local"
+msgid "First line of address"
 msgstr "पते की पहली पंक्ति"
 
 #: apps/address/abstract_models.py:226

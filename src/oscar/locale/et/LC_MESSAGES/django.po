@@ -67,7 +67,7 @@ msgid "Last name"
 msgstr "Perenimi"
 
 #: apps/address/abstract_models.py:224
-msgid "Local"
+msgid "First line of address"
 msgstr "Esimene aadressirida"
 
 #: apps/address/abstract_models.py:226

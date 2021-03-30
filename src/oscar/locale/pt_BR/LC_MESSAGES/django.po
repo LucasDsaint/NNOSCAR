@@ -83,7 +83,7 @@ msgid "Last name"
 msgstr "Sobrenome"
 
 #: apps/address/abstract_models.py:224
-msgid "Local"
+msgid "First line of address"
 msgstr "Endereço"
 
 #: apps/address/abstract_models.py:226
@@ -179,7 +179,7 @@ msgstr "Países"
 
 #: apps/address/abstract_models.py:474 forms/mixins.py:27
 msgid "Phone number"
-msgstr "Teles"
+msgstr "Telefone"
 
 #: apps/address/abstract_models.py:475
 msgid "In case we need to call you about your order"
@@ -5332,16 +5332,16 @@ msgstr "60+"
 
 #: forms/mixins.py:81
 msgid "This is not a valid international phone format."
-msgstr "Este não é um formato de aqui internacional válido."
+msgstr "Este não é um formato de telefone internacional válido."
 
 #: forms/mixins.py:94
 #, python-format
 msgid "This is not a valid local phone format for %s."
-msgstr "Este não é um formato de aqui local válido para %s."
+msgstr "Este não é um formato de telefone local válido para %s."
 
 #: forms/mixins.py:100
 msgid "This is not a valid local or international phone format."
-msgstr "Este não é um formato de aqui local ou internacional válido."
+msgstr "Este não é um formato de telefone local ou internacional válido."
 
 #: management/commands/oscar_send_alerts.py:16
 msgid "Check for products that are back in stock and send out alerts"
@@ -6120,7 +6120,7 @@ msgstr "Contato"
 #: templates/oscar/checkout/thank_you.html:49
 #: templates/oscar/dashboard/orders/order_detail.html:532
 msgid "Phone"
-msgstr "aqui"
+msgstr "Telefone"
 
 #: templates/oscar/checkout/checkout.html:95
 msgid "Payment details to go here"
@@ -6912,7 +6912,7 @@ msgstr "Pedido #%(number)s"
 
 #: templates/oscar/customer/anon_order.html:34
 msgid "Contact number"
-msgstr "aqui de contato"
+msgstr "Telefone de contato"
 
 #: templates/oscar/customer/anon_order.html:40
 #: templates/oscar/dashboard/orders/order_detail.html:106
@@ -7037,7 +7037,7 @@ msgstr "Comprar novamente todos os itens"
 
 #: templates/oscar/customer/order/order_detail.html:165
 msgid "Contact Number"
-msgstr "aqui de contato"
+msgstr "Telefone de contato"
 
 #: templates/oscar/customer/order/order_detail.html:166
 msgid "Shipping Notes"
