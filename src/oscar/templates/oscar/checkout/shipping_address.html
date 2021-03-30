@@ -9,7 +9,7 @@
     {% include 'oscar/checkout/nav.html' with step=1 %}
 {% endblock %}
 
-{% block checkout_title %}{% trans "Shipping address" %}{% endblock %}
+{% block checkout_title %}{% trans "Dados de Entrega" %}{% endblock %}
 
 {% block order_contents %}{% endblock %}
 
@@ -20,7 +20,7 @@
     </div>
     {% if user.is_authenticated %}
         {% if addresses %}
-            <h3>{% trans "An address from your address book?" %}</h3>
+            <h3>{% trans "Utilizar seus dados cadastrados?" %}</h3>
             <div class="choose-block">
                 <div class="row">
                     {% for address in addresses %}
@@ -61,7 +61,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <h3>{% trans "Or a new address?" %}</h3>
+            <h3>{% trans "Ou adicionar um novos Dados?" %}</h3>
         {% endif %}
     {% endif %}
 

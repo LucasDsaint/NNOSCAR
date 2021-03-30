@@ -61,7 +61,7 @@ msgid "Last name"
 msgstr "นามสกุล"
 
 #: apps/address/abstract_models.py:224
-msgid "First line of address"
+msgid "Local"
 msgstr "ที่อยู่บรรทัดแรก"
 
 #: apps/address/abstract_models.py:226

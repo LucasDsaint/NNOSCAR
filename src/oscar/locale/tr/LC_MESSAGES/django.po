@@ -75,7 +75,7 @@ msgid "Last name"
 msgstr "Soyad"
 
 #: apps/address/abstract_models.py:224
-msgid "First line of address"
+msgid "Local"
 msgstr "Adresin ilk satırı"
 
 #: apps/address/abstract_models.py:226

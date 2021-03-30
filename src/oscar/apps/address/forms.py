@@ -26,7 +26,7 @@ class UserAddressForm(PhoneNumberMixin, AbstractAddressForm):
         model = UserAddress
         fields = [
             'first_name', 'last_name',
-            'line1','state','phone_number', 'notes',
+            'line1', 'line2', 'phone_number', 'notes',
         ]
 
     def __init__(self, user, *args, **kwargs):

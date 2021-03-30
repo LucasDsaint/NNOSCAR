@@ -1,5 +1,6 @@
 import re
 import zlib
+from datetime import datetime
 
 from django.conf import settings
 from django.core import exceptions
@@ -221,9 +222,10 @@ class AbstractAddress(models.Model):
 
     # We use quite a few lines of an address as they are often quite long and
     # it's easier to just hide the unnecessary ones than add extra ones.
-    line1 = models.CharField(_("First line of address"), max_length=255)
+    line1 = models.CharField(_("Local"), max_length=255, help_text=_("para onde devemos enviar o seu pedido?"))
     line2 = models.CharField(
-        _("Second line of address"), max_length=255, blank=True)
+        _("Data"), max_length=255, blank=True, help_text=_("Horario que você deseja agendar."))
+
     line3 = models.CharField(
         _("Third line of address"), max_length=255, blank=True)
     line4 = models.CharField(_("City"), max_length=255, blank=True)
