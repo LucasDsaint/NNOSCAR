@@ -68,7 +68,7 @@ msgid "Last name"
 msgstr "Επίθετο"
 
 #: apps/address/abstract_models.py:224
-msgid "First line of address"
+msgid "Local"
 msgstr "Πρώτη γραμμή διεύθυνσης"
 
 #: apps/address/abstract_models.py:226

@@ -63,7 +63,7 @@ msgid "Last name"
 msgstr "Priezvisko"
 
 #: apps/address/abstract_models.py:224
-msgid "First line of address"
+msgid "Local"
 msgstr "Prvý riadok adresy"
 
 #: apps/address/abstract_models.py:226

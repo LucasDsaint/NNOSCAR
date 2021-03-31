@@ -3,13 +3,58 @@
 {% load category_tags %}
 
 {% block layout %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-accounts">
+            <a class="navbar-brand" href="/catalogue/">FPS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top_nav_bar" aria-controls="top_nav_bar" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
 
-    <header class="header container">
-        <div class="page_inner">
-            <div class="row">
-                {% include "oscar/partials/brand.html" %}
-            </div><!-- /row -->
+            <div class="collapse navbar-collapse" id="top_nav_bar">
+                <ul class="navbar-nav mr-auto"></ul>
+                <ul class="navbar-nav">
+                
+
+<nav id="top_page" class="navbar navbar-expand-lg navbar-light bg-light accounts">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".account-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+
+        <div class="navbar-collapse account-collapse collapse">
+            
+            
+            
+            <ul class="navbar-nav ml-md-auto d-md-flex">
+                
+                
+                    <li class="nav-item mr-2">
+                        
+                            <a href="/accounts/" class="nav-link mt-2 mt-lg-0">
+                                <i class="far fa-user mr-2"></i>
+                                Account
+                            </a>
+                        
+                    </li>
+                    
+                    
+                    <li class="nav-item mr-2">
+                        <a id="logout_link" href="/accounts/logout/" class="nav-link">
+                            <i class="fas fa-sign-out-alt mr-2"></i>
+                            Logout
+                        </a>
+                    </li>
+                
+                
+            </ul>
         </div>
+    </div>
+</nav>
+
+
+                </ul>
+          </div>
+        </nav>
+    
         {% block checkout_nav %}{% endblock %}
     </header><!-- /header -->
 

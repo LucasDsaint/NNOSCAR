@@ -79,7 +79,7 @@ msgid "Last name"
 msgstr "Фамилия"
 
 #: apps/address/abstract_models.py:224
-msgid "First line of address"
+msgid "Local"
 msgstr "Первая строка адреса"
 
 #: apps/address/abstract_models.py:226

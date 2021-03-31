@@ -64,7 +64,7 @@ msgid "Last name"
 msgstr "Nama Belakang"
 
 #: apps/address/abstract_models.py:224
-msgid "First line of address"
+msgid "Local"
 msgstr "Baris pertama dari alamat"
 
 #: apps/address/abstract_models.py:226

@@ -79,7 +79,7 @@ msgid "Last name"
 msgstr "성"
 
 #: apps/address/abstract_models.py:224
-msgid "First line of address"
+msgid "Local"
 msgstr "주소"
 
 #: apps/address/abstract_models.py:226

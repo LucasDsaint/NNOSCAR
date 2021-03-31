@@ -6,7 +6,6 @@
     {% trans "Options" %} | {{ block.super }}
 {% endblock %}
 
-{% block breadcrumbs %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></li>
@@ -34,3 +33,4 @@
         <p>{% trans "No Option found." %}</p>
     {% endif %}
 {% endblock dashboard_content %}
+    

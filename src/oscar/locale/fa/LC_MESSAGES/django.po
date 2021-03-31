@@ -81,7 +81,7 @@ msgid "Last name"
 msgstr "نام خانوادگی"
 
 #: apps/address/abstract_models.py:224
-msgid "First line of address"
+msgid "Local"
 msgstr "خط اول نشانی"
 
 #: apps/address/abstract_models.py:226

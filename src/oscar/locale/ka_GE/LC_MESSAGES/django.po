@@ -60,7 +60,7 @@ msgid "Last name"
 msgstr "გვარი"
 
 #: apps/address/abstract_models.py:224
-msgid "First line of address"
+msgid "Local"
 msgstr "მისამართი "
 
 #: apps/address/abstract_models.py:226
