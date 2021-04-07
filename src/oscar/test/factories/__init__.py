@@ -60,7 +60,7 @@ def create_stockrecord(product=None, price=None, partner_sku=None,
         for user in partner_users:
             partner.users.add(user)
     if price is None:
-        price = D('9.99')
+        price = D('9')
     if partner_sku is None:
         partner_sku = 'sku_%d_%d' % (product.id, random.randint(0, 10000))
     return product.stockrecords.create(
@@ -74,7 +74,7 @@ def create_purchase_info(record):
         price=FixedPrice(
             record.price_currency,
             record.price,
-            D('0.00')  # Default to no tax
+            D('0')  # Default to no tax
         ),
         availability=StockRequired(
             record.net_stock_level),
@@ -157,7 +157,7 @@ def create_order(number=None, basket=None, user=None, shipping_address=None,
         basket = Basket.objects.create()
         basket.strategy = Default()
         product = create_product()
-        create_stockrecord(product, num_in_stock=10, price=D('10.00'))
+        create_stockrecord(product, num_in_stock=10, price=D('10'))
         basket.add_product(product)
     if not basket.id:
         basket.save()

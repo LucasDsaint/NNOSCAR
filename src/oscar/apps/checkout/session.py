@@ -236,15 +236,15 @@ class CheckoutSessionMixin(object):
             # the time this skip-condition is called. In the absence of any
             # other evidence, we assume the shipping charge is zero.
             shipping_charge = prices.Price(
-                currency=request.basket.currency, excl_tax=D('0.00'),
-                tax=D('0.00')
+                currency=request.basket.currency, excl_tax=D('0'),
+                tax=D('0')
             )
 
         surcharges = SurchargeApplicator(request).get_applicable_surcharges(
             basket=request.basket, shipping_charge=shipping_charge
         )
         total = self.get_order_totals(request.basket, shipping_charge, surcharges)
-        if total.excl_tax == D('0.00'):
+        if total.excl_tax == D('0'):
             raise exceptions.PassedSkipCondition(
                 url=reverse('checkout:preview')
             )

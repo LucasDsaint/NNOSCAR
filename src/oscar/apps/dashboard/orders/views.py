@@ -99,7 +99,7 @@ class OrderStatsView(FormView):
             'total_orders': orders.count(),
             'total_lines': Line.objects.filter(order__in=orders).count(),
             'total_revenue': orders.aggregate(
-                Sum('total_incl_tax'))['total_incl_tax__sum'] or D('0.00'),
+                Sum('total_incl_tax'))['total_incl_tax__sum'] or D('0'),
             'order_status_breakdown': orders.order_by('status').values(
                 'status').annotate(freq=Count('id'))
         }

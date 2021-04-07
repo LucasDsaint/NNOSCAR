@@ -29,7 +29,7 @@ class OfferApplications(object):
                 'description': result.description,
                 'voucher': offer.get_voucher(),
                 'freq': 0,
-                'discount': D('0.00')}
+                'discount': D('0')}
         self.applications[offer.id]['discount'] += result.discount
         self.applications[offer.id]['freq'] += 1
 
@@ -110,7 +110,7 @@ class OfferApplications(object):
 class ApplicationResult(object):
     is_final = is_successful = False
     # Basket discount
-    discount = D('0.00')
+    discount = D('0')
     description = None
 
     # Offer applications can affect 3 distinct things
@@ -158,7 +158,7 @@ class BasketDiscount(ApplicationResult):
 
 
 # Helper global as returning zero discount is quite common
-ZERO_DISCOUNT = BasketDiscount(D('0.00'))
+ZERO_DISCOUNT = BasketDiscount(D('0'))
 
 
 class ShippingDiscount(ApplicationResult):

@@ -89,7 +89,7 @@ class OrderCreator(object):
                 if application['result'].affects_shipping:
                     # Skip zero shipping discounts
                     shipping_discount = shipping_method.discount(basket)
-                    if shipping_discount <= D('0.00'):
+                    if shipping_discount <= D('0'):
                         continue
                     # If a shipping offer, we need to grab the actual discount off
                     # the shipping method instance, which should be wrapped in an

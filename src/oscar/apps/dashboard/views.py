@@ -83,7 +83,7 @@ class IndexView(TemplateView):
                                           date_placed__lt=end_time)
             total = hourly_orders.aggregate(
                 Sum('total_incl_tax')
-            )['total_incl_tax__sum'] or D('0.0')
+            )['total_incl_tax__sum'] or D('0')
             order_total_hourly.append({
                 'end_time': end_time,
                 'total_incl_tax': total
@@ -97,7 +97,7 @@ class IndexView(TemplateView):
         max_value = (max_value / divisor).quantize(D('1'), rounding=ROUND_UP)
         max_value *= divisor
         if max_value:
-            segment_size = (max_value) / D('100.0')
+            segment_size = (max_value) / D('100')
             for item in order_total_hourly:
                 item['percentage'] = int(item['total_incl_tax'] / segment_size)
 
@@ -155,11 +155,11 @@ class IndexView(TemplateView):
 
             'average_order_costs': orders_last_day.aggregate(
                 Avg('total_incl_tax')
-            )['total_incl_tax__avg'] or D('0.00'),
+            )['total_incl_tax__avg'] or D('0'),
 
             'total_revenue_last_day': orders_last_day.aggregate(
                 Sum('total_incl_tax')
-            )['total_incl_tax__sum'] or D('0.00'),
+            )['total_incl_tax__sum'] or D('0'),
 
             'hourly_report_dict': self.get_hourly_report(orders),
             'total_customers_last_day': customers.filter(
@@ -180,7 +180,7 @@ class IndexView(TemplateView):
             'total_lines': lines.count(),
             'total_revenue': orders.aggregate(
                 Sum('total_incl_tax')
-            )['total_incl_tax__sum'] or D('0.00'),
+            )['total_incl_tax__sum'] or D('0'),
 
             'order_status_breakdown': orders.order_by(
                 'status'

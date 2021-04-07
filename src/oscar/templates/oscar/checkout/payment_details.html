@@ -2,29 +2,38 @@
 {% load i18n %}
 
 {% block title %}
-    {% trans "Payment details" %} | {{ block.super }}
+    {% trans "Order preview" %} | {{ block.super }}
 {% endblock %}
 
 {% block checkout_nav %}
-    {% include 'oscar/checkout/nav.html' with step=3 %}
+    {% include 'oscar/checkout/nav.html' with step=4 %}
 {% endblock %}
 
-{% block checkout_title %}{% trans "Enter payment details" %}{% endblock %}
+{% block checkout_title %}
+    {% trans "Preview order" %}
+{% endblock %}
 
-{% block order_contents %}{% endblock %}
-{% block shipping_address %}{% endblock %}
-{% block shipping_method %}{% endblock %}
-{% block payment_method %}{% endblock %}
+{% block place_order %}
+    <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="place_order" />
 
-{% block payment_details %}
-    {% block payment_details_content %}
-        <p>{% trans "This page needs implementing within your project.  You may want to use one of Oscar's payment gateway libraries:" %}</p>
-        <ul>
-            <li><a href="https://github.com/django-oscar/django-oscar-paypal">django-oscar-paypal</a></li>
-            <li><a href="https://github.com/django-oscar/django-oscar-adyen">django-oscar-adyen</a></li>
-            <li><a href="https://github.com/django-oscar/django-oscar-docdata">django-oscar-docdata</a></li>
-            <li><a href="https://github.com/django-oscar/django-oscar-accounts">django-oscar-accounts</a></li>
-        </ul>
-        <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">{% trans "Continue" %}</a>
-    {% endblock payment_details_content %}
-{% endblock payment_details %}
+        {% comment %}
+            When submitting sensitive data on the payment details page (eg a bankcard)
+            we don't want to save the data and so we pass the bound form to the preview
+            template and render it in a hidden div.  Then the payment information will
+            get re-submitted when the user confirms the order.
+        {% endcomment %}
+        <div style="display:none">
+            {% block hiddenforms %}{% endblock %}
+        </div>
+
+        <div class="form-group clearfix">
+            <div class="row">
+                <div class="col-sm-3 offset-sm-9">
+                     <button id='place-order' type="submit" class="btn btn-primary btn-lg btn-block" data-loading-text="{% trans 'Submitting...' %}">{% trans "Place order" %}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock place_order %}

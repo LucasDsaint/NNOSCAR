@@ -61,8 +61,8 @@ class PercentageDiscountBenefit(Benefit):
         discount_amount_available = max_total_discount
 
         line_tuples = self.get_applicable_lines(offer, basket)
-        discount_percent = min(discount_percent, D('100.0'))
-        discount = D('0.00')
+        discount_percent = min(discount_percent, D('100'))
+        discount = D('0')
         affected_items = 0
         max_affected_items = self._effective_max_affected_items()
         for price, line in line_tuples:
@@ -79,7 +79,7 @@ class PercentageDiscountBenefit(Benefit):
             if quantity_affected <= 0:
                 break
 
-            line_discount = self.round(discount_percent / D('100.0') * price
+            line_discount = self.round(discount_percent / D('100') * price
                                        * int(quantity_affected), basket.currency)
 
             if discount_amount_available is not None:
@@ -130,7 +130,7 @@ class AbsoluteDiscountBenefit(Benefit):
         # Determine which lines can have the discount applied to them
         max_affected_items = self._effective_max_affected_items()
         num_affected_items = 0
-        affected_items_total = D('0.00')
+        affected_items_total = D('0')
         lines_to_discount = []
         for price, line in line_tuples:
             if num_affected_items >= max_affected_items:
@@ -155,7 +155,7 @@ class AbsoluteDiscountBenefit(Benefit):
         # XXX: spreading the discount is a policy decision that may not apply
 
         # Apply discount equally amongst them
-        applied_discount = D('0.00')
+        applied_discount = D('0')
         last_line_idx = len(lines_to_discount) - 1
         for i, (line, price, qty) in enumerate(lines_to_discount):
             if i == last_line_idx:
@@ -212,7 +212,7 @@ class FixedPriceBenefit(Benefit):
         # Determine the lines to consume
         num_permitted = int(condition.value)
         num_affected = 0
-        value_affected = D('0.00')
+        value_affected = D('0')
         covered_lines = []
         for price, line in line_tuples:
             if isinstance(condition, CoverageCondition):
@@ -226,12 +226,12 @@ class FixedPriceBenefit(Benefit):
             covered_lines.append((price, line, quantity_affected))
             if num_affected >= num_permitted:
                 break
-        discount = max(value_affected - self.value, D('0.00'))
+        discount = max(value_affected - self.value, D('0'))
         if not discount:
             return ZERO_DISCOUNT
 
         # Apply discount to the affected lines
-        discount_applied = D('0.00')
+        discount_applied = D('0')
         last_line = covered_lines[-1][1]
         for price, line, quantity in covered_lines:
             if line == last_line:
@@ -333,7 +333,7 @@ class ShippingFixedPriceBenefit(ShippingBenefit):
 
     def shipping_discount(self, charge, currency=None):
         if charge < self.value:
-            return D('0.00')
+            return D('0')
         return charge - self.value
 
 
@@ -352,5 +352,5 @@ class ShippingPercentageDiscountBenefit(ShippingBenefit):
         verbose_name_plural = _("Shipping percentage discount benefits")
 
     def shipping_discount(self, charge, currency=None):
-        discount = charge * self.value / D('100.0')
-        return discount.quantize(D('0.01'))
+        discount = charge * self.value / D('100')
+        return discount.quantize(D('0'))

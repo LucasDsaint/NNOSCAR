@@ -195,7 +195,7 @@ class CoverageCondition(Condition):
 
     def get_value_of_satisfying_items(self, offer, basket):
         covered_ids = []
-        value = D('0.00')
+        value = D('0')
         for line in basket.all_lines():
             if (self.can_apply_condition(line) and line.product.id not in
                     covered_ids):
@@ -235,7 +235,7 @@ class ValueCondition(Condition):
         """
         Determine whether a given basket meets this condition
         """
-        value_of_matches = D('0.00')
+        value_of_matches = D('0')
         for line in basket.all_lines():
             if (self.can_apply_condition(line)
                     and line.quantity_without_offer_discount(offer) > 0):
@@ -250,7 +250,7 @@ class ValueCondition(Condition):
     def _get_value_of_matches(self, offer, basket):
         if hasattr(self, '_value_of_matches'):
             return getattr(self, '_value_of_matches')
-        value_of_matches = D('0.00')
+        value_of_matches = D('0')
         for line in basket.all_lines():
             if self.can_apply_condition(line):
                 price = unit_price(offer, line)
@@ -260,7 +260,7 @@ class ValueCondition(Condition):
 
     def is_partially_satisfied(self, offer, basket):
         value_of_matches = self._get_value_of_matches(offer, basket)
-        return D('0.00') < value_of_matches < self.value
+        return D('0') < value_of_matches < self.value
 
     def get_upsell_message(self, offer, basket):
         value_of_matches = self._get_value_of_matches(offer, basket)
@@ -280,7 +280,7 @@ class ValueCondition(Condition):
         in a specific order.
         """
         # Determine value of items already consumed as part of discount
-        value_consumed = D('0.00')
+        value_consumed = D('0')
         for line, __, qty in affected_lines:
             price = unit_price(offer, line)
             value_consumed += price * qty

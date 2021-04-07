@@ -109,17 +109,10 @@ OSCAR_DASHBOARD_NAVIGATION = [
                 'label': _('Categories'),
                 'url_name': 'dashboard:catalogue-category-list',
             },
-            {
-                'label': _('Ranges'),
-                'url_name': 'dashboard:range-list',
-            },
+
             {
                 'label': _('Low stock alerts'),
                 'url_name': 'dashboard:stock-alert-list',
-            },
-            {
-                'label': _('Options'),
-                'url_name': 'dashboard:catalogue-option-list',
             },
         ]
     },
@@ -172,14 +165,7 @@ OSCAR_DASHBOARD_NAVIGATION = [
                 'label': _('Pages'),
                 'url_name': 'dashboard:page-list',
             },
-            {
-                'label': _('Email templates'),
-                'url_name': 'dashboard:comms-list',
-            },
-            {
-                'label': _('Reviews'),
-                'url_name': 'dashboard:reviews-list',
-            },
+
         ]
     },
     {

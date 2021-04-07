@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                 ('num_orders', models.PositiveIntegerField(default=0, db_index=True, verbose_name='Orders')),
                 ('num_order_lines', models.PositiveIntegerField(default=0, db_index=True, verbose_name='Order Lines')),
                 ('num_order_items', models.PositiveIntegerField(default=0, db_index=True, verbose_name='Order Items')),
-                ('total_spent', models.DecimalField(default=Decimal('0.00'), max_digits=12, decimal_places=2, verbose_name='Total Spent')),
+                ('total_spent', models.DecimalField(default=Decimal('0'), max_digits=12, decimal_places=0, verbose_name='Total Spent')),
                 ('date_last_order', models.DateTimeField(blank=True, verbose_name='Last Order Date', null=True)),
                 ('user', models.OneToOneField(verbose_name='User', to=settings.AUTH_USER_MODEL,
                                               on_delete=models.CASCADE)),

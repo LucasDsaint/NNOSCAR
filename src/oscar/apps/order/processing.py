@@ -131,7 +131,7 @@ class EventHandler(object):
         Note that shipping is not including in this subtotal.  You need to
         subclass and extend this method if you want to include shipping costs.
         """
-        total = D('0.00')
+        total = D('0')
         for line, qty_to_consume in zip(lines, line_quantities):
             # This part is quite fiddly.  We need to skip the prices that have
             # already been settled.  This involves keeping a load of counters.

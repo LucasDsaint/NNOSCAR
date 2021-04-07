@@ -15,15 +15,15 @@ def currency(value, currency=None):
     Format decimal value as currency
     """
     if currency is None:
-        currency = settings.OSCAR_DEFAULT_CURRENCY
+        currency = ''
 
     try:
-        value = D(value)
+        value = int(value)
     except (TypeError, InvalidOperation):
         return ""
     # Using Babel's currency formatting
     # http://babel.pocoo.org/en/latest/api/numbers.html#babel.numbers.format_currency
-    OSCAR_CURRENCY_FORMAT = getattr(settings, 'OSCAR_CURRENCY_FORMAT', None)
+    OSCAR_CURRENCY_FORMAT = "x"
     kwargs = {
         'currency': currency,
         'locale': to_locale(get_language() or settings.LANGUAGE_CODE)

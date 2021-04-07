@@ -42,7 +42,7 @@ class Base(object):
         # The regular shipping methods don't add a default discount.
         # For offers and vouchers, the discount will be provided
         # by a wrapper that Repository.apply_shipping_offer() adds.
-        return D('0.00')
+        return D('0')
 
 
 class Free(Base):
@@ -57,7 +57,7 @@ class Free(Base):
         # immediately set the tax to zero
         return prices.Price(
             currency=basket.currency,
-            excl_tax=D('0.00'), tax=D('0.00'))
+            excl_tax=D('0'), tax=D('0'))
 
 
 class NoShippingRequired(Free):
@@ -180,13 +180,13 @@ class TaxInclusiveOfferDiscount(OfferDiscount):
         """
         Return the charge excluding tax (but including discount).
         """
-        if incl_tax == D('0.00'):
-            return D('0.00')
+        if incl_tax == D('0'):
+            return D('0')
         # We assume we can linearly scale down the excl tax price before
         # discount.
         excl_tax = base_charge.excl_tax * (
             incl_tax / base_charge.incl_tax)
-        return excl_tax.quantize(D('0.01'))
+        return excl_tax.quantize(D('0'))
 
     def discount(self, basket):
         base_charge = self.method.calculate(basket)

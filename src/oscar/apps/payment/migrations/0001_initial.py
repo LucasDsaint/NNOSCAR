@@ -38,9 +38,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('currency', models.CharField(default='GBP', max_length=12, verbose_name='Currency')),
-                ('amount_allocated', models.DecimalField(default=Decimal('0.00'), max_digits=12, decimal_places=2, verbose_name='Amount Allocated')),
-                ('amount_debited', models.DecimalField(default=Decimal('0.00'), max_digits=12, decimal_places=2, verbose_name='Amount Debited')),
-                ('amount_refunded', models.DecimalField(default=Decimal('0.00'), max_digits=12, decimal_places=2, verbose_name='Amount Refunded')),
+                ('amount_allocated', models.DecimalField(default=Decimal('0'), max_digits=12, decimal_places=0, verbose_name='Amount Allocated')),
+                ('amount_debited', models.DecimalField(default=Decimal('0'), max_digits=12, decimal_places=0, verbose_name='Amount Debited')),
+                ('amount_refunded', models.DecimalField(default=Decimal('0'), max_digits=12, decimal_places=0, verbose_name='Amount Refunded')),
                 ('reference', models.CharField(max_length=128, verbose_name='Reference', blank=True)),
                 ('label', models.CharField(max_length=128, verbose_name='Label', blank=True)),
                 ('order', models.ForeignKey(verbose_name='Order', related_name='sources', to='order.Order', on_delete=models.CASCADE)),
@@ -71,7 +71,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('txn_type', models.CharField(max_length=128, verbose_name='Type', blank=True)),
-                ('amount', models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Amount')),
+                ('amount', models.DecimalField(max_digits=12, decimal_places=0, verbose_name='Amount')),
                 ('reference', models.CharField(max_length=128, verbose_name='Reference', blank=True)),
                 ('status', models.CharField(max_length=128, verbose_name='Status', blank=True)),
                 ('date_created', models.DateTimeField(auto_now_add=True, verbose_name='Date Created')),

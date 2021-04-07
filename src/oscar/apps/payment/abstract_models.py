@@ -36,7 +36,7 @@ class AbstractTransaction(models.Model):
     AUTHORISE, DEBIT, REFUND = 'Authorise', 'Debit', 'Refund'
     txn_type = models.CharField(_("Type"), max_length=128, blank=True)
 
-    amount = models.DecimalField(_("Amount"), decimal_places=2, max_digits=12)
+    amount = models.DecimalField(_("Amount"), decimal_places=0, max_digits=12)
     reference = models.CharField(_("Reference"), max_length=128, blank=True)
     status = models.CharField(_("Status"), max_length=128, blank=True)
     date_created = models.DateTimeField(_("Date Created"), auto_now_add=True, db_index=True)
@@ -81,14 +81,14 @@ class AbstractSource(models.Model):
 
     # Track the various amounts associated with this source
     amount_allocated = models.DecimalField(
-        _("Amount Allocated"), decimal_places=2, max_digits=12,
-        default=Decimal('0.00'))
+        _("Amount Allocated"), decimal_places=0, max_digits=12,
+        default=Decimal('0'))
     amount_debited = models.DecimalField(
-        _("Amount Debited"), decimal_places=2, max_digits=12,
-        default=Decimal('0.00'))
+        _("Amount Debited"), decimal_places=0, max_digits=12,
+        default=Decimal('0'))
     amount_refunded = models.DecimalField(
-        _("Amount Refunded"), decimal_places=2, max_digits=12,
-        default=Decimal('0.00'))
+        _("Amount Refunded"), decimal_places=0, max_digits=12,
+        default=Decimal('0'))
 
     # Reference number for this payment source.  This is often used to look up
     # a transaction model for a particular payment partner.

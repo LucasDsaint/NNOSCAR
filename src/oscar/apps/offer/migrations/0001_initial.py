@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('type', models.CharField(verbose_name='Type', max_length=128, blank=True, choices=[('Percentage', "Discount is a percentage off of the product's value"), ('Absolute', "Discount is a fixed amount off of the product's value"), ('Multibuy', 'Discount is to give the cheapest product for free'), ('Fixed price', 'Get the products that meet the condition for a fixed price'), ('Shipping absolute', 'Discount is a fixed amount of the shipping cost'), ('Shipping fixed price', 'Get shipping for a fixed price'), ('Shipping percentage', 'Discount is a percentage off of the shipping cost')])),
-                ('value', oscar.models.fields.PositiveDecimalField(max_digits=12, decimal_places=2, blank=True, verbose_name='Value', null=True)),
+                ('value', oscar.models.fields.PositiveDecimalField(max_digits=12, decimal_places=0, blank=True, verbose_name='Value', null=True)),
                 ('max_affected_items', models.PositiveIntegerField(verbose_name='Max Affected Items', blank=True, help_text='Set this to prevent the discount consuming all items within the range that are in the basket.', null=True)),
                 ('proxy_class', oscar.models.fields.NullCharField(unique=True, verbose_name='Custom class', default=None, max_length=255)),
             ],
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('type', models.CharField(verbose_name='Type', max_length=128, blank=True, choices=[('Count', 'Depends on number of items in basket that are in condition range'), ('Value', 'Depends on value of items in basket that are in condition range'), ('Coverage', 'Needs to contain a set number of DISTINCT items from the condition range')])),
-                ('value', oscar.models.fields.PositiveDecimalField(max_digits=12, decimal_places=2, blank=True, verbose_name='Value', null=True)),
+                ('value', oscar.models.fields.PositiveDecimalField(max_digits=12, decimal_places=0, blank=True, verbose_name='Value', null=True)),
                 ('proxy_class', oscar.models.fields.NullCharField(unique=True, verbose_name='Custom class', default=None, max_length=255)),
             ],
             options={
@@ -60,8 +60,8 @@ class Migration(migrations.Migration):
                 ('max_global_applications', models.PositiveIntegerField(verbose_name='Max global applications', blank=True, help_text='The number of times this offer can be used before it is unavailable', null=True)),
                 ('max_user_applications', models.PositiveIntegerField(verbose_name='Max user applications', blank=True, help_text='The number of times a single user can use this offer', null=True)),
                 ('max_basket_applications', models.PositiveIntegerField(verbose_name='Max basket applications', blank=True, help_text='The number of times this offer can be applied to a basket (and order)', null=True)),
-                ('max_discount', models.DecimalField(verbose_name='Max discount', max_digits=12, decimal_places=2, null=True, help_text='When an offer has given more discount to orders than this threshold, then the offer becomes unavailable', blank=True)),
-                ('total_discount', models.DecimalField(default=Decimal('0.00'), max_digits=12, decimal_places=2, verbose_name='Total Discount')),
+                ('max_discount', models.DecimalField(verbose_name='Max discount', max_digits=12, decimal_places=0, null=True, help_text='When an offer has given more discount to orders than this threshold, then the offer becomes unavailable', blank=True)),
+                ('total_discount', models.DecimalField(default=Decimal('0'), max_digits=12, decimal_places=0, verbose_name='Total Discount')),
                 ('num_applications', models.PositiveIntegerField(default=0, verbose_name='Number of applications')),
                 ('num_orders', models.PositiveIntegerField(default=0, verbose_name='Number of Orders')),
                 ('redirect_url', oscar.models.fields.ExtendedURLField(verbose_name='URL redirect (optional)', blank=True)),

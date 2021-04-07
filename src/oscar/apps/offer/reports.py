@@ -53,7 +53,7 @@ class OfferReportGenerator(ReportGenerator):
                     continue
                 offer_discounts[discount.offer_id] = {
                     'offer': offer,
-                    'total_discount': D('0.00')
+                    'total_discount': D('0')
                 }
             offer_discounts[discount.offer_id]['total_discount'] \
                 += discount.amount

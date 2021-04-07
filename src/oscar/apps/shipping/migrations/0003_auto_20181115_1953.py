@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='weightband',
             name='upper_limit',
-            field=models.DecimalField(db_index=True, decimal_places=3, help_text='Enter upper limit of this weight band in kg. The lower limit will be determined by the other weight bands.', max_digits=12, validators=[django.core.validators.MinValueValidator(Decimal('0.00'))], verbose_name='Upper Limit'),
+            field=models.DecimalField(db_index=True, decimal_places=3, help_text='Enter upper limit of this weight band in kg. The lower limit will be determined by the other weight bands.', max_digits=12, validators=[django.core.validators.MinValueValidator(Decimal('0'))], verbose_name='Upper Limit'),
         ),
         migrations.AlterField(
             model_name='weightbased',

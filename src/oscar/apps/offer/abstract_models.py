@@ -190,7 +190,7 @@ class AbstractConditionalOffer(models.Model):
     # Use this field to limit the amount of discount an offer can lead to.
     # This can be helpful with budgeting.
     max_discount = models.DecimalField(
-        _("Max discount"), decimal_places=2, max_digits=12, null=True,
+        _("Max discount"), decimal_places=0, max_digits=12, null=True,
         blank=True,
         help_text=_("When an offer has given more discount to orders "
                     "than this threshold, then the offer becomes "
@@ -201,8 +201,8 @@ class AbstractConditionalOffer(models.Model):
     # max_* fields above.
 
     total_discount = models.DecimalField(
-        _("Total Discount"), decimal_places=2, max_digits=12,
-        default=D('0.00'))
+        _("Total Discount"), decimal_places=0, max_digits=12,
+        default=D('0'))
     num_applications = models.PositiveIntegerField(
         _("Number of applications"), default=0)
     num_orders = models.PositiveIntegerField(
@@ -490,7 +490,7 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
     # (eg for multibuy) or a decimal (eg an amount) which is slightly
     # confusing.
     value = fields.PositiveDecimalField(
-        _("Value"), decimal_places=2, max_digits=12, null=True, blank=True)
+        _("Value"), decimal_places=0, max_digits=12, null=True, blank=True)
 
     # If this is not set, then there is no upper limit on how many products
     # can be discounted by this benefit.
@@ -638,7 +638,7 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
             rounding_function = cached_import_string(rounding_function_path)
             return rounding_function(amount, currency)
 
-        return amount.quantize(D('.01'), ROUND_DOWN)
+        return amount.quantize(D('0'), ROUND_DOWN)
 
     def _effective_max_affected_items(self):
         """
@@ -680,7 +680,7 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
         return sorted(line_tuples, key=operator.itemgetter(0))
 
     def shipping_discount(self, charge, currency=None):
-        return D('0.00')
+        return D('0')
 
 
 class AbstractCondition(BaseOfferMixin, models.Model):
@@ -705,7 +705,7 @@ class AbstractCondition(BaseOfferMixin, models.Model):
     type = models.CharField(_('Type'), max_length=128, choices=TYPE_CHOICES,
                             blank=True)
     value = fields.PositiveDecimalField(
-        _('Value'), decimal_places=2, max_digits=12, null=True, blank=True)
+        _('Value'), decimal_places=0, max_digits=12, null=True, blank=True)
 
     proxy_class = fields.NullCharField(
         _("Custom class"), max_length=255, default=None)

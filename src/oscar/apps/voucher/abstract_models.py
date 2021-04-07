@@ -148,8 +148,8 @@ class AbstractVoucher(models.Model):
         _("Times added to basket"), default=0)
     num_orders = models.PositiveIntegerField(_("Times on orders"), default=0)
     total_discount = models.DecimalField(
-        _("Total discount"), decimal_places=2, max_digits=12,
-        default=Decimal('0.00'))
+        _("Total discount"), decimal_places=0, max_digits=12,
+        default=Decimal('0'))
 
     voucher_set = models.ForeignKey(
         'voucher.VoucherSet', null=True, blank=True, related_name='vouchers',

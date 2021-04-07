@@ -45,8 +45,8 @@ class PercentageCharge(BaseSurcharge):
         else:
             return prices.Price(
                 currency=basket.currency,
-                excl_tax=D('0.0'),
-                incl_tax=D('0.0')
+                excl_tax=D('0'),
+                incl_tax=D('0')
             )
 
 

@@ -175,11 +175,11 @@ def round_half_up(money):
     Explicitly round a decimal to 2 places half up, as should be used for
     money.
 
-    >>> exponent = decimal.Decimal('0.01')
+    >>> exponent = decimal.Decimal('0')
     >>> should_not_be_one = decimal.Decimal('1.005')
     >>> should_not_be_one.quantize(exponent)
     Decimal('1.00')
     >>> round_half_up(should_not_be_one)
     Decimal('1.01')
     """
-    return money.quantize(decimal.Decimal('0.01'), decimal.ROUND_HALF_UP)
+    return money.quantize(decimal.Decimal('0'), decimal.ROUND_HALF_UP)

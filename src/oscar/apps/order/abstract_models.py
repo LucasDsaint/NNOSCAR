@@ -58,16 +58,16 @@ class AbstractOrder(models.Model):
     currency = models.CharField(
         _("Currency"), max_length=12, default=get_default_currency)
     total_incl_tax = models.DecimalField(
-        _("Order total (inc. tax)"), decimal_places=2, max_digits=12)
+        _("Order total (inc. tax)"), decimal_places=0, max_digits=12)
     total_excl_tax = models.DecimalField(
-        _("Order total (excl. tax)"), decimal_places=2, max_digits=12)
+        _("Order total (excl. tax)"), decimal_places=0, max_digits=12)
 
     # Shipping charges
     shipping_incl_tax = models.DecimalField(
-        _("Shipping charge (inc. tax)"), decimal_places=2, max_digits=12,
+        _("Shipping charge (inc. tax)"), decimal_places=0, max_digits=12,
         default=0)
     shipping_excl_tax = models.DecimalField(
-        _("Shipping charge (excl. tax)"), decimal_places=2, max_digits=12,
+        _("Shipping charge (excl. tax)"), decimal_places=0, max_digits=12,
         default=0)
 
     # Not all lines are actually shipped (such as downloads), hence shipping
@@ -206,14 +206,14 @@ class AbstractOrder(models.Model):
         """
         The amount of discount this order received
         """
-        discount = D('0.00')
+        discount = D('0')
         for line in self.lines.all():
             discount += line.discount_incl_tax
         return discount
 
     @property
     def total_discount_excl_tax(self):
-        discount = D('0.00')
+        discount = D('0')
         for line in self.lines.all():
             discount += line.discount_excl_tax
         return discount
@@ -282,7 +282,7 @@ class AbstractOrder(models.Model):
     def shipping_before_discounts_incl_tax(self):
         # We can construct what shipping would have been before discounts by
         # adding the discounts back onto the final shipping charge.
-        total = D('0.00')
+        total = D('0')
         for discount in self.shipping_discounts:
             total += discount.amount
         return self.shipping_incl_tax + total
@@ -527,25 +527,25 @@ class AbstractLine(models.Model):
     # can be calculated from the LinePrice models
     # Deprecated - will be removed in Oscar 2.1
     line_price_incl_tax = models.DecimalField(
-        _("Price (inc. tax)"), decimal_places=2, max_digits=12)
+        _("Price (inc. tax)"), decimal_places=0, max_digits=12)
     # Deprecated - will be removed in Oscar 2.1
     line_price_excl_tax = models.DecimalField(
-        _("Price (excl. tax)"), decimal_places=2, max_digits=12)
+        _("Price (excl. tax)"), decimal_places=0, max_digits=12)
 
     # Price information before discounts are applied
     line_price_before_discounts_incl_tax = models.DecimalField(
         _("Price before discounts (inc. tax)"),
-        decimal_places=2, max_digits=12)
+        decimal_places=0, max_digits=12)
     line_price_before_discounts_excl_tax = models.DecimalField(
         _("Price before discounts (excl. tax)"),
-        decimal_places=2, max_digits=12)
+        decimal_places=0, max_digits=12)
 
     # Normal site price for item (without discounts)
     unit_price_incl_tax = models.DecimalField(
-        _("Unit Price (inc. tax)"), decimal_places=2, max_digits=12,
+        _("Unit Price (inc. tax)"), decimal_places=0, max_digits=12,
         blank=True, null=True)
     unit_price_excl_tax = models.DecimalField(
-        _("Unit Price (excl. tax)"), decimal_places=2, max_digits=12,
+        _("Unit Price (excl. tax)"), decimal_places=0, max_digits=12,
         blank=True, null=True)
 
     # Partners often want to assign some status to each line to help with their
@@ -832,13 +832,13 @@ class AbstractLinePrice(models.Model):
         verbose_name=_("Line"))
     quantity = models.PositiveIntegerField(_("Quantity"), default=1)
     price_incl_tax = models.DecimalField(
-        _("Price (inc. tax)"), decimal_places=2, max_digits=12)
+        _("Price (inc. tax)"), decimal_places=0, max_digits=12)
     price_excl_tax = models.DecimalField(
-        _("Price (excl. tax)"), decimal_places=2, max_digits=12)
+        _("Price (excl. tax)"), decimal_places=0, max_digits=12)
     shipping_incl_tax = models.DecimalField(
-        _("Shiping (inc. tax)"), decimal_places=2, max_digits=12, default=0)
+        _("Shiping (inc. tax)"), decimal_places=0, max_digits=12, default=0)
     shipping_excl_tax = models.DecimalField(
-        _("Shipping (excl. tax)"), decimal_places=2, max_digits=12, default=0)
+        _("Shipping (excl. tax)"), decimal_places=0, max_digits=12, default=0)
 
     class Meta:
         abstract = True
@@ -893,7 +893,7 @@ class AbstractPaymentEvent(models.Model):
         related_name='payment_events',
         verbose_name=_("Order"))
     amount = models.DecimalField(
-        _("Amount"), decimal_places=2, max_digits=12)
+        _("Amount"), decimal_places=0, max_digits=12)
     # The reference should refer to the transaction ID of the payment gateway
     # that was used for this event.
     reference = models.CharField(
@@ -1100,7 +1100,7 @@ class AbstractOrderDiscount(models.Model):
         _("Code"), max_length=128, db_index=True, blank=True)
     frequency = models.PositiveIntegerField(_("Frequency"), null=True)
     amount = models.DecimalField(
-        _("Amount"), decimal_places=2, max_digits=12, default=0)
+        _("Amount"), decimal_places=0, max_digits=12, default=0)
 
     # Post-order offer applications can return a message to indicate what
     # action was taken after the order was placed.
@@ -1180,11 +1180,11 @@ class AbstractSurcharge(models.Model):
     )
 
     incl_tax = models.DecimalField(
-        _("Surcharge (inc. tax)"), decimal_places=2, max_digits=12,
+        _("Surcharge (inc. tax)"), decimal_places=0, max_digits=12,
         default=0)
 
     excl_tax = models.DecimalField(
-        _("Surcharge (excl. tax)"), decimal_places=2, max_digits=12,
+        _("Surcharge (excl. tax)"), decimal_places=0, max_digits=12,
         default=0)
 
     @property

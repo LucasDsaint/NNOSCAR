@@ -218,13 +218,13 @@ class AbstractAddress(models.Model):
         pgettext_lazy("Treatment Pronouns for the customer", "Title"),
         max_length=64, choices=TITLE_CHOICES, blank=True)
     first_name = models.CharField(_("First name"), max_length=255, blank=True)
-    last_name = models.CharField(_("Last name"), max_length=255, blank=True)
+    last_name = models.CharField(_("Local"), max_length=255, blank=True, help_text=_("para onde devemos entregar o seu pedido?"))
 
     # We use quite a few lines of an address as they are often quite long and
     # it's easier to just hide the unnecessary ones than add extra ones.
-    line1 = models.CharField(_("Local"), max_length=255, help_text=_("para onde devemos enviar o seu pedido?"))
+    line1 = models.CharField(_("Data"), max_length=255, help_text=_("Data que você deseja agendar"))
     line2 = models.CharField(
-        _("Data"), max_length=255, blank=True, help_text=_("Horario que você deseja agendar."))
+        _("Horario"), max_length=255, blank=True, help_text=_("Horario que você deseja agendar."))
 
     line3 = models.CharField(
         _("Third line of address"), max_length=255, blank=True)

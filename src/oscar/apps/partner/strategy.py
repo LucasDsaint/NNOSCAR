@@ -237,7 +237,7 @@ class NoTax(object):
         return FixedPrice(
             currency=stockrecord.price_currency,
             excl_tax=stockrecord.price,
-            tax=D('0.00'))
+            tax=D('0'))
 
     def parent_pricing_policy(self, product, children_stock):
         stockrecords = [x[1] for x in children_stock if x[1] is not None]
@@ -248,7 +248,7 @@ class NoTax(object):
         return FixedPrice(
             currency=stockrecord.price_currency,
             excl_tax=stockrecord.price,
-            tax=D('0.00'))
+            tax=D('0'))
 
 
 class FixedRateTax(object):
@@ -259,7 +259,7 @@ class FixedRateTax(object):
     Rounding behaviour is Decimal's default
     """
     rate = D('0')  # Subclass and specify the correct rate
-    exponent = D('0.01')  # Default to two decimal places
+    exponent = D('0')  # Default to two decimal places
 
     def pricing_policy(self, product, stockrecord):
         if not stockrecord or stockrecord.price is None:
@@ -361,7 +361,7 @@ class UK(UseFirstStockRecord, StockRequired, FixedRateTax, Structured):
     hard-coded.
     """
     # Use UK VAT rate (as of December 2013)
-    rate = D('0.20')
+    rate = D('0')
 
 
 class US(UseFirstStockRecord, StockRequired, DeferredTax, Structured):

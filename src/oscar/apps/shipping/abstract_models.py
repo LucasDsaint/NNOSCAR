@@ -42,7 +42,7 @@ class AbstractBase(models.Model):
         Return the discount on the standard shipping charge
         """
         # This method is identical to the Base.discount().
-        return D('0.00')
+        return D('0')
 
 
 class AbstractOrderAndItemCharges(AbstractBase):
@@ -58,15 +58,15 @@ class AbstractOrderAndItemCharges(AbstractBase):
     be provided that subclasses ShippingMethod.
     """
     price_per_order = models.DecimalField(
-        _("Price per order"), decimal_places=2, max_digits=12,
-        default=D('0.00'))
+        _("Price per order"), decimal_places=0, max_digits=12,
+        default=D('0'))
     price_per_item = models.DecimalField(
-        _("Price per item"), decimal_places=2, max_digits=12,
-        default=D('0.00'))
+        _("Price per item"), decimal_places=0, max_digits=12,
+        default=D('0'))
 
     # If basket value is above this threshold, then shipping is free
     free_shipping_threshold = models.DecimalField(
-        _("Free Shipping"), decimal_places=2, max_digits=12, blank=True,
+        _("Free Shipping"), decimal_places=0, max_digits=12, blank=True,
         null=True)
 
     class Meta(AbstractBase.Meta):
@@ -79,8 +79,8 @@ class AbstractOrderAndItemCharges(AbstractBase):
         if (self.free_shipping_threshold is not None
                 and basket.total_incl_tax >= self.free_shipping_threshold):
             return prices.Price(
-                currency=basket.currency, excl_tax=D('0.00'),
-                incl_tax=D('0.00'))
+                currency=basket.currency, excl_tax=D('0'),
+                incl_tax=D('0'))
 
         charge = self.price_per_order
         for line in basket.lines.all():
@@ -102,8 +102,8 @@ class AbstractWeightBased(AbstractBase):
     # attribute.
     default_weight = models.DecimalField(
         _("Default Weight"), decimal_places=3, max_digits=12,
-        default=D('0.000'),
-        validators=[MinValueValidator(D('0.00'))],
+        default=D('0'),
+        validators=[MinValueValidator(D('0'))],
         help_text=_("Default product weight in kg when no weight attribute "
                     "is defined"))
 
@@ -148,7 +148,7 @@ class AbstractWeightBased(AbstractBase):
         """
         weight = D(weight)  # weight really should be stored as a decimal
         if not self.bands.exists():
-            return D('0.00')
+            return D('0')
 
         top_band = self.top_band
         if weight <= top_band.upper_limit:
@@ -188,19 +188,19 @@ class AbstractWeightBand(models.Model):
         verbose_name=_("Method"))
     upper_limit = models.DecimalField(
         _("Upper Limit"), decimal_places=3, max_digits=12, db_index=True,
-        validators=[MinValueValidator(D('0.00'))],
+        validators=[MinValueValidator(D('0'))],
         help_text=_("Enter upper limit of this weight band in kg. The lower "
                     "limit will be determined by the other weight bands."))
     charge = models.DecimalField(
-        _("Charge"), decimal_places=2, max_digits=12,
-        validators=[MinValueValidator(D('0.00'))])
+        _("Charge"), decimal_places=0, max_digits=12,
+        validators=[MinValueValidator(D('0'))])
 
     @property
     def weight_from(self):
         lower_bands = self.method.bands.filter(
             upper_limit__lt=self.upper_limit).order_by('-upper_limit')
         if not lower_bands:
-            return D('0.000')
+            return D('0')
         return lower_bands[0].upper_limit
 
     @property

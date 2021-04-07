@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='stockrecord',
             name='price_excl_tax',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=12, null=True, verbose_name='Price'),
+            field=models.DecimalField(blank=True, decimal_places=0, max_digits=12, null=True, verbose_name='Price'),
         ),
         migrations.RenameField(
             model_name='stockrecord',

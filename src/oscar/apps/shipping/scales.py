@@ -26,10 +26,10 @@ class Scale(object):
                         self.attribute, product))
             weight = self.default_weight
 
-        return D(weight) if weight is not None else D('0.0')
+        return D(weight) if weight is not None else D('0')
 
     def weigh_basket(self, basket):
-        weight = D('0.0')
+        weight = D('0')
         for line in basket.lines.all():
             weight += self.weigh_product(line.product) * line.quantity
         return weight

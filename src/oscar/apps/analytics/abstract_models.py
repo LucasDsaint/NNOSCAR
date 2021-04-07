@@ -26,7 +26,7 @@ class AbstractProductRecord(models.Model):
         _('Purchases'), default=0, db_index=True)
 
     # Product score - used within search
-    score = models.FloatField(_('Score'), default=0.00)
+    score = models.FloatField(_('Score'), default=0)
 
     class Meta:
         abstract = True
@@ -60,8 +60,8 @@ class AbstractUserRecord(models.Model):
         _('Order Lines'), default=0, db_index=True)
     num_order_items = models.PositiveIntegerField(
         _('Order Items'), default=0, db_index=True)
-    total_spent = models.DecimalField(_('Total Spent'), decimal_places=2,
-                                      max_digits=12, default=Decimal('0.00'))
+    total_spent = models.DecimalField(_('Total Spent'), decimal_places=0,
+                                      max_digits=12, default=Decimal('0'))
     date_last_order = models.DateTimeField(
         _('Last Order Date'), blank=True, null=True)
 

@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('end_datetime', models.DateTimeField(verbose_name='End datetime')),
                 ('num_basket_additions', models.PositiveIntegerField(default=0, verbose_name='Times added to basket')),
                 ('num_orders', models.PositiveIntegerField(default=0, verbose_name='Times on orders')),
-                ('total_discount', models.DecimalField(default=Decimal('0.00'), max_digits=12, decimal_places=2, verbose_name='Total discount')),
+                ('total_discount', models.DecimalField(default=Decimal('0'), max_digits=12, decimal_places=0, verbose_name='Total discount')),
                 ('date_created', models.DateField(auto_now_add=True)),
                 ('offers', models.ManyToManyField(related_name='vouchers', verbose_name='Offers', to='offer.ConditionalOffer')),
             ],

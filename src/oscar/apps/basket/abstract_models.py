@@ -374,7 +374,7 @@ class AbstractBasket(models.Model):
         For executing a named method on each line of the basket
         and returning the total.
         """
-        total = D('0.00')
+        total = D('0')
         for line in self.all_lines():
             try:
                 total += getattr(line, property)
@@ -638,10 +638,10 @@ class AbstractLine(models.Model):
     price_currency = models.CharField(
         _("Currency"), max_length=12, default=get_default_currency)
     price_excl_tax = models.DecimalField(
-        _('Price excl. Tax'), decimal_places=2, max_digits=12,
+        _('Price excl. Tax'), decimal_places=0, max_digits=12,
         null=True)
     price_incl_tax = models.DecimalField(
-        _('Price incl. Tax'), decimal_places=2, max_digits=12, null=True)
+        _('Price incl. Tax'), decimal_places=0, max_digits=12, null=True)
 
     # Track date of first addition
     date_created = models.DateTimeField(_("Date Created"), auto_now_add=True, db_index=True)
@@ -650,8 +650,8 @@ class AbstractLine(models.Model):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Instance variables used to persist discount information
-        self._discount_excl_tax = D('0.00')
-        self._discount_incl_tax = D('0.00')
+        self._discount_excl_tax = D('0')
+        self._discount_incl_tax = D('0')
         self.consumer = LineOfferConsumer(self)
 
     class Meta:
@@ -685,8 +685,8 @@ class AbstractLine(models.Model):
         """
         Remove any discounts from this line.
         """
-        self._discount_excl_tax = D('0.00')
-        self._discount_incl_tax = D('0.00')
+        self._discount_excl_tax = D('0')
+        self._discount_incl_tax = D('0')
         self.consumer = LineOfferConsumer(self)
 
     def discount(self, discount_value, affected_quantity, incl_tax=True,
