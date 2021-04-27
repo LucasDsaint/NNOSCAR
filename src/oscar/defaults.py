@@ -157,17 +157,7 @@ OSCAR_DASHBOARD_NAVIGATION = [
         ]
     },
     
-    {
-        'label': _('Content'),
-        'icon': 'fas fa-folder',
-        'children': [
-            {
-                'label': _('Pages'),
-                'url_name': 'dashboard:page-list',
-            },
-
-        ]
-    },
+    
     {
         'label': _('Reports'),
         'icon': 'fas fa-chart-bar',
